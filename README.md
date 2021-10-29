@@ -1,7 +1,8 @@
 # dolphincollector
 # Version 1.0
-# Author: Paolo Ang <https://www.linkedin.com/in/paoloang/>
+# Author: Paolo Ang
 # Final Revision Date: 10/29/2021
+# <https://www.linkedin.com/in/paoloang/>
 
 
 
