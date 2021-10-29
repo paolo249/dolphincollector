@@ -15,9 +15,9 @@
 ☐ Screenshot(s): 
 ## Home Page ##
 <!-- ![workout-program](https://i.imgur.com/N9wBT3P.png) -->
-## Cheatmeal Page ##
+## About Page ##
 
-## All Workouts Page ##
+## View All My Dolphins Page ##
 
 
 
