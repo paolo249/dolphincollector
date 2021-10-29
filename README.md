@@ -48,6 +48,9 @@ git commit -m ‘first commit’
 git push
 
 
+Startup Server
+python3 manage.py runserver  
+
 ☐ FUTURE UPDATES:
 
 
