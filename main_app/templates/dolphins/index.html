@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Dolphin List</h1>
+
+{% for dolphin in dolphins %}
+  <div class="card">
+    <div class="card-content">
+      <span class="card-title">{{ dolphin.name }}</span>
+      <p>Region: {{ dolphin.region }}</p>
+      <p>Description: {{ dolphin.description }}</p>
+      <p>status: {{ dolphin.status }}</p>
+    </div>
+  </div>
+{% endfor %}
+
+{% endblock %}
