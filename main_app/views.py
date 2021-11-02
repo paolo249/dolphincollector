@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Dolphin
 
 
@@ -16,3 +17,19 @@ def dolphins_index(request):
 def dolphins_detail(request, dolphin_id):
   dolphin = Dolphin.objects.get(id=dolphin_id)
   return render(request, 'dolphins/detail.html', { 'dolphin': dolphin })
+
+
+class DolphinCreate(CreateView):
+  model = Dolphin
+  fields = '__all__'
+  success_url = '/dolphins/'
+
+
+class DolphinUpdate(UpdateView):
+  model = Dolphin
+  # Let's disallow the renaming of a cat by excluding the name field!
+  fields = ['region', 'description', 'status']
+
+class DolphinDelete(DeleteView):
+  model = Dolphin
+  success_url = '/dolphins/'
