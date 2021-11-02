@@ -1,30 +1,18 @@
 from django.shortcuts import render
-from django.http import HttpResponse
-
-
-class Dolphin: 
-    def __init__(self, name, region, description, status):
-        self.name = name
-        self.region = region
-        self.description = description
-        self.status = status
-
-dolphins = [
-    Dolphin('Amazon River Dolphin','South America','freshwater dolphins','ENDANGERED'),
-    Dolphin('Atlantic Humpback Dolphin','Atlantic','humpback','CRITICAL'),
-    Dolphin('Chilean Dolphin','South America','White-bellied','NEAR THREATHENED')
-]
-
-
-
+from .models import Dolphin
 
 
 # Create your views here.
 def home(request):
-    return HttpResponse('<h1> Hello </h1>')
+  return render(request, 'home.html')
 
 def about(request):
     return render(request, 'about.html')
 
 def dolphins_index(request):
-    return render(request, 'dolphins/index.html', {'dolphins': dolphins})
+  dolphins = Dolphin.objects.all()
+  return render(request, 'dolphins/index.html', { 'dolphins': dolphins })
+
+def dolphins_detail(request, dolphin_id):
+  dolphin = Dolphin.objects.get(id=dolphin_id)
+  return render(request, 'dolphins/detail.html', { 'dolphin': dolphin })
