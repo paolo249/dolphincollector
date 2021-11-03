@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Dolphin
+from .models import Dolphin, Toy
 from .forms import FeedingForm
 
 
@@ -52,3 +52,7 @@ class DolphinUpdate(UpdateView):
 class DolphinDelete(DeleteView):
   model = Dolphin
   success_url = '/dolphins/'
+
+class ToyCreate(CreateView):
+  model = Toy
+  fields = '__all__'
