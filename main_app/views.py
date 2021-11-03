@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Dolphin
+from .forms import FeedingForm
 
 
 # Create your views here.
@@ -14,10 +15,28 @@ def dolphins_index(request):
   dolphins = Dolphin.objects.all()
   return render(request, 'dolphins/index.html', { 'dolphins': dolphins })
 
+
+
 def dolphins_detail(request, dolphin_id):
   dolphin = Dolphin.objects.get(id=dolphin_id)
-  return render(request, 'dolphins/detail.html', { 'dolphin': dolphin })
+  # instantiate FeedingForm to be rendered in the template
+  feeding_form = FeedingForm()
+  return render(request, 'dolphins/detail.html', {
+    # include the cat and feeding_form in the context
+    'dolphin': dolphin, 'feeding_form': feeding_form
+  })
 
+def add_feeding(request, dolphin_id):
+  # create a ModelForm instance using the data in request.POST
+  form = FeedingForm(request.POST)
+  # validate the form
+  if form.is_valid():
+    # don't save the form to the db until it
+    # has the cat_id assigned
+    new_feeding = form.save(commit=False)
+    new_feeding.dolphin_id = dolphin_id
+    new_feeding.save()
+  return redirect('detail', dolphin_id=dolphin_id)
 
 class DolphinCreate(CreateView):
   model = Dolphin
